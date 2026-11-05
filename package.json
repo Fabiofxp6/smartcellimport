@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "db:init": "tsx scripts/init-db.ts",
+    "db:seed-categories": "tsx scripts/seed-categories.ts",
     "admin:create": "tsx scripts/create-admin.ts",
     "images:cleanup": "tsx scripts/cleanup-images.ts",
     "format": "prettier --write ."

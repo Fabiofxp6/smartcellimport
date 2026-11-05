@@ -41,6 +41,14 @@ npm run db:init
 
 Esse comando cria índices e as configurações iniciais da Smart Cell; não cria produtos nem categorias. Os três contatos enviados nas imagens ficam editáveis no painel. Não há campos de estoque. A conexão tem cache de promessa, pool limitado e timeouts, com queries somente no servidor.
 
+Para cadastrar as oito categorias da loja solicitadas (capas de celular, garrafas térmicas, fones de ouvido, carregadores, cabos, smartwatches, copos térmicos e pulseiras para smartwatch), execute:
+
+```sh
+npm run db:seed-categories
+```
+
+O script valida nomes, slugs, descrições e filtros e grava as categorias publicadas na ordem definida no MongoDB indicado pelo ambiente. Cadastros equivalentes são reutilizados por nome/slug; campos vazios recebem os valores iniciais. A categoria legada “Capa” passa a se chamar “Capas de celular”, com atualização dos termos de busca dos seus produtos. IDs, slugs, imagens e vínculos existentes são preservados. As oito operações são aplicadas em uma transação. Execuções posteriores mantêm personalizações e não criam duplicatas; a administração continua sendo feita pelo painel.
+
 ## Cloudinary
 
 Copie cloud name, API key e API secret no ambiente Cloudinary para as respectivas variáveis. Os uploads são assinados no servidor, autenticados, limitados a 3 MB por arquivo e transformados para tamanho máximo de 2000 × 2000. Não é necessário preset público/unsigned. Não se grava mídia permanentemente no disco da Vercel.
